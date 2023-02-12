@@ -1,3 +1,7 @@
+//! Conversion between and use of various color spaces
+//! 
+//! Currently only supports conversion between HSV & RGB, and Luma & RGB
+
 pub mod hsv;
 pub mod luma;
 

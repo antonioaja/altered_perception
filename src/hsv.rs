@@ -4,6 +4,18 @@ use rgb::RGB;
 
 #[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
 /// The HSV pixel
+///
+/// A container for the hue, saturation, and value of a certain pixel
+///
+/// # Examples
+///
+/// Here is how to create a single pixel
+///
+/// ```
+/// use altered_perception::HSV;
+///
+/// let pixel = HSV::new(90.0, 0.5, 0.3);
+/// ```
 pub struct HSV<T> {
     /// Hue (in degrees)
     pub h: T,
@@ -14,6 +26,14 @@ pub struct HSV<T> {
 }
 impl<N: std::convert::Into<f64> + Copy + 'static> HSV<N> {
     /// Converts an rgb pixel into an hsv pixel
+    ///
+    /// ```
+    /// use altered_perception::HSV;
+    /// use rgb::RGB;
+    ///
+    /// let rgb_pixel = RGB::new(1,2,3);
+    /// let hsv_pixel = HSV::from_rgb(rgb_pixel);
+    /// ```
     pub fn from_rgb<T: std::convert::Into<f64> + Bounded>(rgb_pixel: RGB<T>) -> HSV<N>
     where
         f64: AsPrimitive<N>,
@@ -58,11 +78,20 @@ impl<N: std::convert::Into<f64> + Copy + 'static> HSV<N> {
         }
     }
 
+    /// Creates a single pixel of type N
     pub fn new(h: N, s: N, v: N) -> HSV<N> {
         HSV { h, s, v }
     }
 
     /// Converts an hsv pixel to an rbg pixel
+    ///
+    /// ```
+    /// use altered_perception::HSV;
+    /// use rgb::RGB;
+    ///
+    /// let hsv_pixel = HSV::new(90.0, 0.5, 0.3);
+    /// let rgb_pixel = HSV::to_rgb(hsv_pixel);
+    /// ```
     pub fn to_rgb<T: std::marker::Copy + 'static + Bounded + std::convert::Into<f64>>(
         hsv_pixel: HSV<N>,
     ) -> RGB<T>
