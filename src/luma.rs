@@ -1,12 +1,17 @@
+use crate::Luma;
 use num_traits::cast::AsPrimitive;
 use rgb::RGB;
 
-#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
-pub struct Luma<T> {
-    pub luminance: T,
-}
 impl<T> Luma<T> {
     /// Converts an RGB pixel into a Luma pixel
+    ///
+    /// ```
+    /// use altered_perception::Luma;
+    /// use rgb::RGB;
+    ///
+    /// let rgb_pixel = RGB::new(1,2,3);
+    /// let luma_pixel: Luma<u8> = Luma::from_rgb::<u8>(rgb_pixel);
+    /// ```
     pub fn from_rgb<N: std::convert::Into<f64>>(rgb_pixel: RGB<N>) -> Luma<T>
     where
         T: std::convert::Into<f64> + std::marker::Copy + 'static,
@@ -28,6 +33,14 @@ impl<T> Luma<T> {
     }
 
     /// Converts a luma pixel into an RGB pixel
+    ///
+    /// ```
+    /// use altered_perception::Luma;
+    /// use rgb::RGB;
+    ///
+    /// let luma_pixel = Luma::new(155);
+    /// let rgb_pixel = Luma::to_rgb::<u8>(luma_pixel);
+    /// ```
     pub fn to_rgb<N: std::convert::From<T>>(luma_pixel: Luma<T>) -> RGB<N>
     where
         T: Copy,

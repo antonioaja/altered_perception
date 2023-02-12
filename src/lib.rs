@@ -1,13 +1,52 @@
 //! Conversion between and use of various color spaces
-//! 
-//! Currently only supports conversion between HSV & RGB, and Luma & RGB
+//!
+//! Currently only supports conversion between HSV & RGB; Luma & RGB
 
 pub mod hsv;
 pub mod luma;
 
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
+/// The HSV pixel
+///
+/// A container for the hue, saturation, and value of a certain pixel
+///
+/// # Examples
+///
+/// Here is how to create a single pixel
+///
+/// ```
+/// use altered_perception::HSV;
+///
+/// let pixel = HSV::new(90.0, 0.5, 0.3);
+/// ```
+pub struct HSV<T> {
+    /// Hue (in degrees)
+    pub h: T,
+    /// Saturation (between 0 and 1)
+    pub s: T,
+    /// Value (between 0 and 1)
+    pub v: T,
+}
+
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
+/// The Luma pixel
+///
+/// # Example
+///
+/// Here is how to create a single pixel
+///
+/// ```
+/// use altered_perception::Luma;
+///
+/// let pixel = Luma::new(167);
+/// ```
+pub struct Luma<T> {
+    pub luminance: T,
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::hsv::HSV;
+    use crate::HSV;
     use rayon::prelude::*;
     use rgb::RGB;
 
