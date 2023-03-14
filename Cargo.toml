@@ -1,6 +1,6 @@
 [package]
 name = "altered_perception"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = ["Antonio Aguilar"]
 include = ["src", "Cargo.toml", "README.md", "LICENSE"]
@@ -18,3 +18,5 @@ rayon = "1.6.1"
 [dependencies]
 num-traits = "0.2"
 rgb = "0.8.34"
+serde = "1.0.152"
+serde_derive = "1.0.152"

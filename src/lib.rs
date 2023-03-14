@@ -5,7 +5,11 @@
 pub mod hsv;
 pub mod luma;
 
-#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
+use serde_derive::{Deserialize, Serialize};
+
+#[derive(
+    Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
+)]
 /// The HSV pixel
 ///
 /// A container for the hue, saturation, and value of a certain pixel
@@ -28,7 +32,9 @@ pub struct HSV<T> {
     pub v: T,
 }
 
-#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
+#[derive(
+    Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
+)]
 /// The Luma pixel
 ///
 /// # Example
