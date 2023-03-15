@@ -31,7 +31,7 @@ pub struct HSL<T> {
     pub h: T,
     /// Saturation (between 0 and 1)
     pub s: T,
-    /// Value (between 0 and 1)
+    /// Lightness (between 0 and 1)
     pub l: T,
 }
 
