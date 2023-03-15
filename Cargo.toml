@@ -1,14 +1,17 @@
 [package]
 name = "altered_perception"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Antonio Aguilar"]
 include = ["src", "Cargo.toml", "README.md", "LICENSE"]
-description = "`struct HSV/Luma/etc.` for sharing pixels between crates + other pixel manipulations"
+description = "`struct HSV/Luma/HSL/etc.` for sharing pixels between crates + other pixel manipulations"
 readme = "README.md"
-keywords = ["hsv", "luma", "rgb", "pixel", "color"]
+keywords = ["hsv", "luma", "rgb", "pixel", "color", "hsl"]
 license = "MIT"
 categories = ["graphics", "rust-patterns", "multimedia::images"]
+documentation = "https://docs.rs/altered_perception/"
+repository = "https://github.com/antonioaja/altered_perception"
+homepage = "https://lib.rs/crates/altered_perception"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -18,5 +21,7 @@ rayon = "1.6.1"
 [dependencies]
 num-traits = "0.2"
 rgb = "0.8.34"
-serde = "1.0.152"
-serde_derive = "1.0.152"
+serde = { version = "1.0", optional = true, features = ["derive"] }
+
+[package.metadata.docs.rs]
+features = [ "serde" ]

@@ -1,6 +1,6 @@
 # altered_perception
 
-A rust library for converting and using various color spaces. It currently supports both HSV and Luma pixels with conversion to and from RGB pixels.
+A rust library for converting and using various color spaces. It currently supports both HSV, HSL, and Luma pixels with conversion to and from RGB pixels.
 
 This library is done in the vain of the rgb crate: https://github.com/kornelski/rust-rgb
 

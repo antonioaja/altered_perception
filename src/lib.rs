@@ -1,16 +1,18 @@
 //! Conversion between and use of various color spaces
 //!
-//! Currently only supports conversion between HSV & RGB; Luma & RGB
+//! Currently only supports conversion between HSV & RGB; Luma & RGB; HSL & RGB
 
 pub mod hsl;
 pub mod hsv;
 pub mod luma;
 
-use serde_derive::{Deserialize, Serialize};
+#[cfg(feature = "serde")]
+#[macro_use]
+extern crate serde;
 
-#[derive(
-    Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
-)]
+#[repr(C)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
 /// The HSL pixel
 ///
 /// A container for the hue, saturation, and lightness of a certain pixel
@@ -33,9 +35,9 @@ pub struct HSL<T> {
     pub l: T,
 }
 
-#[derive(
-    Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
-)]
+#[repr(C)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
 /// The HSV pixel
 ///
 /// A container for the hue, saturation, and value of a certain pixel
@@ -58,9 +60,9 @@ pub struct HSV<T> {
     pub v: T,
 }
 
-#[derive(
-    Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
-)]
+#[repr(C)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
 /// The Luma pixel
 ///
 /// # Example
