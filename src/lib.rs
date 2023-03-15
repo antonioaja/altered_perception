@@ -7,7 +7,8 @@ pub mod hsv;
 pub mod luma;
 
 #[cfg(feature = "serde")]
-#[macro_use] extern crate serde;
+#[macro_use]
+extern crate serde;
 
 #[repr(C)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -79,7 +80,7 @@ pub struct Luma<T> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{HSL, HSV};
+    use crate::{Luma, HSL, HSV};
     use rayon::prelude::*;
     use rgb::RGB;
 
@@ -140,6 +141,17 @@ mod tests {
                     assert_eq!(original, final_out);
                 });
             });
+        });
+    }
+
+    #[test]
+    fn luma8_to_rgb8_to_luma8() {
+        (0..=u8::MAX).into_par_iter().for_each(|r| {
+            let original = Luma::new(r);
+            let intermediate: RGB<u8> = Luma::to_rgb::<u8>(original);
+            let final_out = Luma::from_rgb(intermediate);
+
+            assert_eq!(original, final_out);
         });
     }
 }
