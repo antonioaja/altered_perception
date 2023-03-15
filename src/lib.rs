@@ -2,10 +2,36 @@
 //!
 //! Currently only supports conversion between HSV & RGB; Luma & RGB
 
+pub mod hsl;
 pub mod hsv;
 pub mod luma;
 
 use serde_derive::{Deserialize, Serialize};
+
+#[derive(
+    Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
+)]
+/// The HSL pixel
+///
+/// A container for the hue, saturation, and lightness of a certain pixel
+///
+/// # Examples
+///
+/// Here is how to create a single pixel
+///
+/// ```
+/// use altered_perception::HSL;
+///
+/// let pixel = HSL::new(90.0, 0.5, 0.3);
+/// ```
+pub struct HSL<T> {
+    /// Hue (in degrees)
+    pub h: T,
+    /// Saturation (between 0 and 1)
+    pub s: T,
+    /// Value (between 0 and 1)
+    pub l: T,
+}
 
 #[derive(
     Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord, Serialize, Deserialize,
@@ -52,7 +78,7 @@ pub struct Luma<T> {
 
 #[cfg(test)]
 mod tests {
-    use crate::HSV;
+    use crate::{HSL, HSV};
     use rayon::prelude::*;
     use rgb::RGB;
 
@@ -79,6 +105,36 @@ mod tests {
                     let original = RGB::new(r, g, b);
                     let intermediate: HSV<f32> = HSV::from_rgb::<u8>(original);
                     let final_out = HSV::<f32>::to_rgb(intermediate);
+
+                    assert_eq!(original, final_out);
+                });
+            });
+        });
+    }
+
+    #[test]
+    fn rgb8_to_hsl_f64() {
+        (0..=u8::MAX).into_par_iter().for_each(|r| {
+            (0..=u8::MAX).for_each(|g| {
+                (0..=u8::MAX).for_each(|b| {
+                    let original = RGB::new(r, g, b);
+                    let intermediate: HSL<f64> = HSL::from_rgb::<u8>(original);
+                    let final_out = HSL::<f64>::to_rgb(intermediate);
+
+                    assert_eq!(original, final_out);
+                });
+            });
+        });
+    }
+
+    #[test]
+    fn rgb8_to_hsl_f32() {
+        (0..=u8::MAX).into_par_iter().for_each(|r| {
+            (0..=u8::MAX).for_each(|g| {
+                (0..=u8::MAX).for_each(|b| {
+                    let original = RGB::new(r, g, b);
+                    let intermediate: HSL<f32> = HSL::from_rgb::<u8>(original);
+                    let final_out = HSL::<f32>::to_rgb(intermediate);
 
                     assert_eq!(original, final_out);
                 });
