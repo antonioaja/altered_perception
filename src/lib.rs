@@ -2,6 +2,7 @@
 //!
 //! Currently only supports conversion between HSV & RGB; Luma & RGB; HSL & RGB
 
+pub mod cmyk;
 pub mod hsl;
 pub mod hsv;
 pub mod luma;
@@ -78,6 +79,33 @@ pub struct Luma<T> {
     pub luminance: T,
 }
 
+#[repr(C)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
+/// The CMYK pixel
+///
+/// A container for the hue, saturation, and value of a certain pixel
+///
+/// # Examples
+///
+/// Here is how to create a single pixel
+///
+/// ```
+/// use altered_perception::CMYK;
+///
+/// let pixel = CMYK::new(90.0, 0.5, 0.3);
+/// ```
+pub struct CMYK<T> {
+    /// Cyan (between 0 and 1)
+    pub c: T,
+    /// Magenta (between 0 and 1)
+    pub m: T,
+    /// Yellow (between 0 and 1)
+    pub y: T,
+    /// Black (between 0 and 1)
+    pub k: T,
+}
+
 #[cfg(test)]
 mod tests {
     use crate::{Luma, HSL, HSV};
@@ -145,7 +173,7 @@ mod tests {
     }
 
     #[test]
-    fn luma8_to_rgb8_to_luma8() {
+    fn luma8_to_rgb8() {
         (0..=u8::MAX).into_par_iter().for_each(|r| {
             let original = Luma::new(r);
             let intermediate: RGB<u8> = Luma::to_rgb::<u8>(original);
