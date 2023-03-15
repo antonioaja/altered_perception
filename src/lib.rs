@@ -7,8 +7,7 @@ pub mod hsv;
 pub mod luma;
 
 #[cfg(feature = "serde")]
-#[macro_use]
-use serde::{Deserialize, Serialize};
+#[macro_use] extern crate serde;
 
 #[repr(C)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
