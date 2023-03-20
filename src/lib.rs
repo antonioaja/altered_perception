@@ -103,5 +103,3 @@ pub struct CMYK<T> {
     /// Black (between 0 and 1)
     pub k: T,
 }
-
-

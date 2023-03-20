@@ -9,7 +9,6 @@ mod tests {
         (0..=u8::MAX).into_par_iter().for_each(|r| {
             (0..=u8::MAX).for_each(|g| {
                 (0..=u8::MAX).for_each(|b| {
-        
                     let original = RGB::new(r, g, b);
                     let intermediate: HSV<f64> = HSV::from_rgb::<u8>(original);
                     let final_out = HSV::<f64>::to_rgb(intermediate);
