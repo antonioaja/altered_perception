@@ -4,7 +4,7 @@ use num_traits::Bounded;
 use rgb::RGB;
 
 impl<N: std::convert::Into<f64> + Copy + 'static> CMYK<N> {
-    /// Converts an rgb pixel into an hsv pixel
+    /// Converts an rgb pixel into an cmyk pixel
     ///
     /// ```
     /// use altered_perception::CMYK;
@@ -36,7 +36,7 @@ impl<N: std::convert::Into<f64> + Copy + 'static> CMYK<N> {
         CMYK { c, m, y, k }
     }
 
-    /// Converts an hsv pixel to an rbg pixel
+    /// Converts an cmyk pixel to an rbg pixel
     ///
     /// ```
     /// use altered_perception::CMYK;
