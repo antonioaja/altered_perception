@@ -11,7 +11,7 @@ impl<N: std::convert::Into<f64> + Copy + 'static> CMYK<N> {
     /// use rgb::RGB;
     ///
     /// let rgb_pixel = RGB::new(1,2,3);
-    /// let hsv_pixel: CMYK<f64> = CMYK::from_rgb::<u8>(rgb_pixel);
+    /// let cmyk_pixel: CMYK<f64> = CMYK::from_rgb::<u8>(rgb_pixel);
     /// ```
     pub fn from_rgb<T: std::convert::Into<f64> + Bounded>(rgb_pixel: RGB<T>) -> CMYK<N>
     where
