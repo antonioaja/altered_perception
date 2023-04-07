@@ -1,6 +1,6 @@
 //! Conversion between and use of various color spaces
 //!
-//! Currently only supports conversion between HSV & RGB; Luma & RGB; HSL & RGB
+//! Currently only supports conversion between HSV & RGB; Luma & RGB; HSL & RGB; CMYK & RGB; CMY & RGB
 
 pub mod color_spaces;
 mod tests;
