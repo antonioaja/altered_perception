@@ -91,7 +91,7 @@ pub struct Luma<T> {
 /// ```
 /// use altered_perception::CMYK;
 ///
-/// let pixel = CMYK::new(90.0, 0.5, 0.3);
+/// let pixel = CMYK::new(0.5, 0.5, 0.3, 0.7);
 /// ```
 pub struct CMYK<T> {
     /// Cyan (between 0 and 1)
