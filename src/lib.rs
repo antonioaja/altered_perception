@@ -118,7 +118,7 @@ pub struct CMYK<T> {
 /// ```
 /// use altered_perception::CMY;
 ///
-/// let pixel = CMY::new(0.5, 0.5, 0.3, 0.7);
+/// let pixel = CMY::new(0.5, 0.5, 0.3);
 /// ```
 pub struct CMY<T> {
     /// Cyan (between 0 and 1)
