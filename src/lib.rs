@@ -82,7 +82,7 @@ pub struct Luma<T> {
 #[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
 /// The CMYK pixel
 ///
-/// A container for the hue, saturation, and value of a certain pixel
+/// A container for the cyan, magenta, yellow, and black levels of a single pixel
 ///
 /// # Examples
 ///
@@ -102,4 +102,29 @@ pub struct CMYK<T> {
     pub y: T,
     /// Black (between 0 and 1)
     pub k: T,
+}
+
+#[repr(C)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Copy, Clone, Debug, Default, PartialEq, PartialOrd, Eq, Hash, Ord)]
+/// The CMY pixel
+///
+/// A container for the cyan, magenta, and yellow levels of a single pixel
+///
+/// # Examples
+///
+/// Here is how to create a single pixel
+///
+/// ```
+/// use altered_perception::CMY;
+///
+/// let pixel = CMY::new(0.5, 0.5, 0.3, 0.7);
+/// ```
+pub struct CMY<T> {
+    /// Cyan (between 0 and 1)
+    pub c: T,
+    /// Magenta (between 0 and 1)
+    pub m: T,
+    /// Yellow (between 0 and 1)
+    pub y: T,
 }
